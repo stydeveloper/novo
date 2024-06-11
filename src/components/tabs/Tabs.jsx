@@ -42,29 +42,30 @@ const Tabs = () => {
   return (
     <div className="   bg-[#f1f2f5]">
       <div className="w-[70%] m-auto py-1  flex items-center justify-between  flex-wrap">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`flex items-center  space-x-2 py-2 px-4 rounded-lg text-sm font-medium 
+        {activeTab &&
+          tabs.map((tab) => (
+            <button
+              key={tab.id}
+              className={`flex items-center  space-x-2 py-2 px-4 rounded-lg text-sm font-medium 
                       ${
                         activeTab?.id === tab.id
                           ? "bg-green-100 text-green-700"
                           : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"
                       }`}
-            onClick={() => handleTab(tab)}
-          >
-            {tab.icon && <i className={`${tab.icon} text-green-600`}></i>}
-            <span
-              className={` py-2 px-4  rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
-                activeTab?.id === tab.id
-                  ? "bg-green-100 text-green-700 border-2 border-gray-400 shadow-md"
-                  : "text-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-600 border border-gray-300"
-              }`}
+              onClick={() => handleTab(tab)}
             >
-              {tab.label}
-            </span>
-          </button>
-        ))}
+              {tab.icon && <i className={`${tab.icon} text-green-600`}></i>}
+              <span
+                className={` py-2 px-4  rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
+                  activeTab?.id === tab.id
+                    ? "bg-green-100 text-green-700 border-2 border-gray-400 shadow-md"
+                    : "text-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-600 border border-gray-300"
+                }`}
+              >
+                {tab.label}
+              </span>
+            </button>
+          ))}
       </div>
     </div>
   );
