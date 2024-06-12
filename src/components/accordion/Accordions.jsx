@@ -1,53 +1,74 @@
 "use client";
 import { useTabs } from "@/context/TabContext";
 import { AccordionItem } from "../accordionItem/AccordionItem";
+import { useEffect } from "react";
+import { filterQuestionsByCategory } from "@/utils/helper";
+import Loader from "../loader/Loader";
 
 const Accordions = () => {
   const {
     activeTab,
-
     questions,
-
     filteredQuestions,
+    searchTerm,
+    loading,
+    setFilteredQuestions,
   } = useTabs();
 
-  console.log("filteredQuestions", filteredQuestions);
+  const displayQuestions =
+    searchTerm || activeTab.id !== "allTopics" ? filteredQuestions : questions;
 
-  if (activeTab?.id === "allTopics") {
-    return (
-      <div className="flex-1 bg-[#e1e2ea]">
-        <div className="w-[90%] lg:w-[70%] m-auto flex flex-col gap-[3rem] lg:gap-3 pt-6 pb-3">
-          {Object.entries(questions).map(([category, questionsArray]) => (
-            <AccordionItem
-              key={category}
-              title={category}
-              questions={questionsArray}
-              color={questionsArray[0].color} // Assuming color is consistent within the category
-            />
-          ))}
-        </div>
-      </div>
-    );
+  useEffect(() => {
+    if (!searchTerm && activeTab.id !== "allTopics") {
+      // This ensures that we refresh the questions when switching tabs without search terms
+      const filtered = filterQuestionsByCategory(questions, activeTab.id);
+      setFilteredQuestions(filtered);
+    }
+  }, [activeTab, searchTerm]); // Respond to changes in activeTab or searchTerm
+
+  // Prepare questions for display based on the active tab or search term handling
+  let categoriesAndQuestions = [];
+  if (activeTab.id !== "allTopics" && !searchTerm) {
+    // Group all questions under this tab's category if there's no search term
+    categoriesAndQuestions = [
+      {
+        category: activeTab.label,
+        questionsArray: displayQuestions,
+      },
+    ];
   } else {
-    // For other tabs, render one accordion with multiple questions and answers
-    return (
-      <div className="flex-1 bg-[#e1e2ea]">
-        <div className="w-[70%] m-auto flex flex-col gap-3 pt-6 pb-3">
-          {filteredQuestions && filteredQuestions.length > 0 && (
-            <AccordionItem
-              title={`Questions about ${filteredQuestions[0].title}`}
-              questions={filteredQuestions}
-              color={
-                filteredQuestions.length > 0
-                  ? filteredQuestions[0].color
-                  : "#eee"
-              }
-            />
-          )}
-        </div>
-      </div>
+    // Handle as separate categories only if it's a search result or 'allTopics' tab
+
+    categoriesAndQuestions = Object.entries(displayQuestions).map(
+      ([category, questionsArray]) => ({
+        category,
+        questionsArray,
+      })
     );
   }
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  return (
+    <div className="relative flex-1  bg-[#e1e2ea]">
+      <div className="w-[90%] lg:w-[70%] m-auto flex flex-col gap-[3rem] lg:gap-3 pt-6 pb-3">
+        {categoriesAndQuestions.map(({ category, questionsArray }) => (
+          <AccordionItem
+            key={category}
+            title={category}
+            questions={Array.isArray(questionsArray) ? questionsArray : []}
+            color={
+              questionsArray && questionsArray.length > 0
+                ? questionsArray[0].color
+                : "#eee"
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Accordions;

@@ -1,14 +1,14 @@
 "use client";
 import "./Tabs.css";
 import { useTabs } from "@/context/TabContext";
-import { filterQuestionsByCategory, transformQuestions } from "@/utils/helper";
+import { filterQuestionsByCategory } from "@/utils/helper";
 
 const Tabs = () => {
   const {
     activeTab,
     setActiveTab,
     questions,
-    setQuestions,
+    setSearchTerm,
     setFilteredQuestions,
   } = useTabs();
 
@@ -23,49 +23,42 @@ const Tabs = () => {
 
   const handleTab = (tab) => {
     setActiveTab(tab);
-
+    setSearchTerm(""); // Clear search term contextually
     if (tab.id === "allTopics") {
-      setQuestions(questions);
-      setFilteredQuestions([]);
-      return;
+      setFilteredQuestions(questions); // Reset to all questions when 'allTopics' is selected
+    } else {
+      const filtered = filterQuestionsByCategory(questions, tab.id);
+      setFilteredQuestions(filtered);
     }
-
-    // Use the updated helper functions
-    const filteredQuestions = filterQuestionsByCategory(questions, tab.id);
-    const transformedQuestions = transformQuestions(filteredQuestions);
-
-    console.log("transformedQuestions", transformedQuestions);
-
-    setFilteredQuestions(transformedQuestions);
+    // Ensure that the search input field is cleared in the UI
   };
 
   return (
     <div className="   bg-[#f1f2f5]">
-      <div className="w-[70%] m-auto py-1  flex items-center justify-between  flex-wrap">
-        {activeTab &&
-          tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`flex items-center  space-x-2 py-2 px-4 rounded-lg text-sm font-medium 
+      <div className="w-[70%] m-auto py-1  flex items-center justify-center md:justify-between  flex-wrap">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            className={`flex items-center  space-x-2 py-2 px-4 rounded-lg text-sm font-medium 
                       ${
                         activeTab?.id === tab.id
                           ? "bg-green-100 text-green-700"
                           : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"
                       }`}
-              onClick={() => handleTab(tab)}
+            onClick={() => handleTab(tab)}
+          >
+            {tab.icon && <i className={`${tab.icon} text-green-600`}></i>}
+            <span
+              className={` py-2 px-4  rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
+                activeTab?.id === tab.id
+                  ? "bg-green-100 text-green-700 border-2 border-gray-400 shadow-md"
+                  : "text-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-600 border border-gray-300"
+              }`}
             >
-              {tab.icon && <i className={`${tab.icon} text-green-600`}></i>}
-              <span
-                className={` py-2 px-4  rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
-                  activeTab?.id === tab.id
-                    ? "bg-green-100 text-green-700 border-2 border-gray-400 shadow-md"
-                    : "text-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-600 border border-gray-300"
-                }`}
-              >
-                {tab.label}
-              </span>
-            </button>
-          ))}
+              {tab.label}
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -31,3 +31,23 @@ export const transformQuestions = (questions) => {
     title: question.title,
   }));
 };
+
+export const extractPlainTextFromRichText = (richTextDocument) => {
+  let plainText = "";
+
+  const traverseNodes = (nodes) => {
+    nodes.forEach((node) => {
+      if (node.nodeType === "text") {
+        plainText += node.value;
+      } else if (node.content) {
+        traverseNodes(node.content);
+      }
+    });
+  };
+
+  if (richTextDocument && richTextDocument.content) {
+    traverseNodes(richTextDocument.content);
+  }
+
+  return plainText;
+};

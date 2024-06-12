@@ -1,0 +1,4 @@
+.close-icon {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(4%) saturate(15%)
+    hue-rotate(355deg) brightness(96%) contrast(88%);
+}
