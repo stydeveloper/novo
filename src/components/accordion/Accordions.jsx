@@ -1,4 +1,3 @@
-
 "use client";
 import { useTabs } from "@/context/TabContext";
 import { AccordionItem } from "../accordionItem/AccordionItem";

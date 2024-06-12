@@ -93,9 +93,9 @@ export const AccordionItem = ({ title, questions, color }) => {
         <div className="py-2  px-4 text-gray-500 dark:text-gray-400 bg-[#f1f2f5] ">
           <div className="mt-[11px] mb-3  lg:m-2 lg:mb-0 shadow-lg border-2 rounded-md  bg-white py-2 pl-4">
             {questions.map((q, index) => (
-              <div key={index}>
+              <div className="mt-2" key={index}>
                 <h4 className="acc-question text-black">{q.question}</h4>
-                <hr className="w-5 my-2  rounded-sm" />
+                <hr className="w-5 my-2 border-2 border-black  rounded-sm" />
                 <p>{documentToReactComponents(q.answer)}</p>{" "}
                 {/* Rendering rich text */}
               </div>

@@ -19,7 +19,7 @@ export const TabProvider = ({ children }) => {
     const loadQuestions = async () => {
       const questionsData = await fetchAllQuestions();
       const groupedQuestions = groupQuestionsByCategory(questionsData);
-      console.log("groupedQuestions", groupedQuestions);
+
       setQuestions(groupedQuestions);
     };
 
