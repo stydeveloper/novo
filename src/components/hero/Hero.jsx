@@ -3,7 +3,7 @@
 "use client";
 import Image from "next/image";
 import SearchIcon from "../../../public/image.png";
-import CloseIcon from "../../../public/icons8-close-26.png";
+// import CloseIcon from "../../../public/icons8-close-26.png";
 import "./Hero.css";
 import SocialLinks from "../socialLinks/SocialLinks";
 import { useEffect, useState } from "react";
@@ -24,10 +24,10 @@ const Hero = () => {
     setInputValue(searchTerm);
   }, [searchTerm]);
 
-  const clearSearchInput = () => {
-    setInputValue(""); // Clear local input state
-    setSearchTerm(""); // Clear global search term
-  };
+  // const clearSearchInput = () => {
+  //   setInputValue(""); // Clear local input state
+  //   setSearchTerm(""); // Clear global search term
+  // };
 
   return (
     <div className="bg-[#2A2C3D] text-white  pt-32">
@@ -55,7 +55,7 @@ const Hero = () => {
               value={inputValue}
               onChange={handleSearchChange}
             />
-            {inputValue && (
+            {/* {inputValue && (
               <div className="overflow-hidden mr-2  flex items-center justify-center">
                 <Image
                   onClick={clearSearchInput}
@@ -65,7 +65,7 @@ const Hero = () => {
                   loading="lazy"
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
