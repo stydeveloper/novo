@@ -48,8 +48,11 @@ export const AccordionItem = ({ title, questions, color }) => {
       {isOpen && (
         <div className="accordion-content py-2 px-4 text-gray-500 dark:text-gray-400 bg-[#f1f2f5] rounded-sm lg:mt-[-6px]">
           {questions.map((q, index) => (
-            <div className="content-inner mb-3 lg:m-2 lg:mb-2 shadow-lg  rounded-md bg-white py-2 pl-4 ">
-              <div className="question-block mt-2" key={index}>
+            <div
+              key={index}
+              className="content-inner mb-3 lg:m-2 lg:mb-2 shadow-lg  rounded-md bg-white py-2 pl-4 "
+            >
+              <div className="question-block mt-2">
                 <h4 className="question-title text-black">{q.question}</h4>
                 <hr className="divider w-5 my-2 border-2 border-black rounded-sm" />
                 <p className="question-answer">
