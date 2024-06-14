@@ -23,8 +23,9 @@ export const TabProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     const loadQuestions = async () => {
-      const questionsData = await fetchAllQuestions();
-      const groupedQuestions = groupQuestionsByCategory(questionsData);
+      const { items, includes } = await fetchAllQuestions();
+      const assets = includes?.Asset || []; // Ensure that you check if includes is defined and contains Asset
+      const groupedQuestions = groupQuestionsByCategory(items, assets);
 
       setQuestions(groupedQuestions);
       setFilteredQuestions(groupedQuestions);

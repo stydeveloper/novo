@@ -5,7 +5,7 @@ import DropIcon from "../../../public/down-arrow.png";
 import "./AccordionItem.css";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-export const AccordionItem = ({ title, questions, color }) => {
+export const AccordionItem = ({ title, questions, color, image }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => setIsOpen(!isOpen);
@@ -21,10 +21,16 @@ export const AccordionItem = ({ title, questions, color }) => {
         className="accordion-toggle h-[160px] w-full lg:h-[50px] text-left focus:outline-none"
       >
         <div className="accordion-header flex h-full flex-wrap lg:flex-nowrap">
-          <div
-            className="color-strip w-[100%] h-[66%] lg:w-[5%] lg:h-auto"
-            style={{ backgroundColor: color }}
-          ></div>
+          <div className="relative color-strip w-[100%] h-[66%] lg:w-[5%] lg:h-[auto] ">
+            {image && (
+              <Image
+                src={image}
+                alt={`Image for ${title}`}
+                layout="fill"
+                objectFit="cover"
+              />
+            )}
+          </div>
           <h1 className="accordion-title p-[15px] lg:p-2 flex-1 flex flex-wrap items-center bg-white font-semibold">
             {title}
           </h1>

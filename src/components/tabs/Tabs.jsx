@@ -35,7 +35,7 @@ const Tabs = () => {
 
   return (
     <div className="bg-[#f1f2f5]">
-      <div className="w-[70%]  m-auto py-1  flex items-center justify-center md:justify-between  scrollable-element">
+      <div className="w-[95%] lg:w-[70%]  tab-container mx-auto py-1  flex items-center justify-center md:justify-between  scrollable-element">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -49,7 +49,7 @@ const Tabs = () => {
           >
             {tab.icon && <i className={`${tab.icon} text-green-600`}></i>}
             <span
-              className={` py-2 px-4  rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
+              className={` py-2 px-4  tabs-span w-max rounded-3xl bg-[#ffffff]  text-[#999aa7]  text-sm ${
                 activeTab?.id === tab.id
                   ? "bg-green-100 text-green-700 border-2 border-gray-400 shadow-md"
                   : "text-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-600 border border-gray-300"

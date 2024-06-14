@@ -1,7 +1,6 @@
-/* For Webkit browsers */
 .scrollable-element {
   overflow-y: hidden; /* Hides vertical scrollbar */
-  overflow-x: auto; /* Enables horizontal scrolling */
+  overflow-x: scroll; /* Enables horizontal scrolling */
 }
 
 .scrollable-element::-webkit-scrollbar {
@@ -24,10 +23,57 @@
   scrollbar-width: thin; /* Makes the scrollbar "thin" in Firefox */
   scrollbar-color: darkgrey #f1f1f1; /* Thumb color and track color */
 }
-
-@media (max-width: 768px) {
-  .scrollable-element {
-    /* Example: Adjust padding or margin only for mobile devices */
-    padding: 0 10px;
+@media (max-width: 768px) and (min-width: 744px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(100px);
+  }
+}
+@media (max-width: 743px) and (min-width: 703px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(120px);
+  }
+}
+@media (max-width: 702px) and (min-width: 656px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(140px);
+  }
+}
+@media (max-width: 657px) and (min-width: 607px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(180px);
+  }
+}
+@media (max-width: 606px) and (min-width: 572px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(180px);
+  }
+}
+@media (max-width: 571px) and (min-width: 530px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(200px);
+  }
+}
+@media (max-width: 529px) and (min-width: 430px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(250px);
+  }
+}
+@media (max-width: 429px) and (min-width: 384px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(270px);
+  }
+}
+@media (max-width: 383px) and (min-width: 320px) {
+  /* Place your CSS styles here that should apply to devices with width 768px or below */
+  .tabs-span {
+    transform: translateX(320px);
   }
 }
