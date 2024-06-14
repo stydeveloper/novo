@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.ctfassets.net"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+        // Optionally, you can add pathname: '/your/path/here/*' for more specific paths
+      },
+    ],
   },
-  // Additional Next.js configuration options can be added here
 };
 
 export default nextConfig;

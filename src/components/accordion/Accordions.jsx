@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { AccordionItem } from "../accordionItem/AccordionItem";
 import { useTabs } from "@/context/TabContext";
 import Loader from "../loader/Loader";
+import { filterQuestionsByCategory } from "@/utils/helper";
 
 // const Accordions = () => {
 //   const {
