@@ -47,8 +47,8 @@ export const AccordionItem = ({ title, questions, color }) => {
       </button>
       {isOpen && (
         <div className="accordion-content py-2 px-4 text-gray-500 dark:text-gray-400 bg-[#f1f2f5] rounded-sm lg:mt-[-6px]">
-          <div className="content-inner mb-3 lg:m-2 lg:mb-2 shadow-lg border-2 rounded-md bg-white py-2 pl-4">
-            {questions.map((q, index) => (
+          {questions.map((q, index) => (
+            <div className="content-inner mb-3 lg:m-2 lg:mb-2 shadow-lg  rounded-md bg-white py-2 pl-4 ">
               <div className="question-block mt-2" key={index}>
                 <h4 className="question-title text-black">{q.question}</h4>
                 <hr className="divider w-5 my-2 border-2 border-black rounded-sm" />
@@ -56,8 +56,8 @@ export const AccordionItem = ({ title, questions, color }) => {
                   {documentToReactComponents(q.answer)}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

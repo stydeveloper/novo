@@ -34,8 +34,8 @@ const Tabs = () => {
   };
 
   return (
-    <div className="   bg-[#f1f2f5]">
-      <div className="w-[70%] m-auto py-1  flex items-center justify-center md:justify-between  flex-wrap">
+    <div className="bg-[#f1f2f5]">
+      <div className="w-[70%]  m-auto py-1  flex items-center justify-center md:justify-between  scrollable-element">
         {tabs.map((tab) => (
           <button
             key={tab.id}

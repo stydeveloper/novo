@@ -1,0 +1,26 @@
+/* For Webkit browsers */
+.scrollable-element {
+  overflow-y: hidden; /* Hides vertical scrollbar */
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.scrollable-element::-webkit-scrollbar {
+  height: 1px; /* Very thin height for the horizontal scrollbar */
+}
+
+.scrollable-element::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light grey track, less visible */
+  border-radius: 10px; /* Rounded corners on the track */
+}
+
+.scrollable-element::-webkit-scrollbar-thumb {
+  background-color: darkgrey; /* Darker thumb for contrast */
+  border-radius: 10px; /* Rounded corners on the thumb */
+  border: 1px solid transparent; /* Optional border around the thumb */
+}
+
+/* For Firefox */
+.scrollable-element {
+  scrollbar-width: thin; /* Makes the scrollbar "thin" in Firefox */
+  scrollbar-color: darkgrey #f1f1f1; /* Thumb color and track color */
+}
